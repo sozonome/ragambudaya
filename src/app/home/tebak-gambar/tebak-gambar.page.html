@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tebak Gambar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row class="hood">
+      <ion-col class="leftt" size="6">
+        Pulau Indonesia
+      </ion-col>
+      <ion-col class="rightt" size="6">
+        Skor : 4
+      </ion-col>
+    </ion-row>
+    <ion-row class="guessImg">
+      <ion-col size="12">
+        <div class="imgContainer">
+          <img src="../../../assets/img/home/tebak_gambar.svg" alt="">
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="options">
+      <ion-col size="8">
+        <ion-button expand="block" (click)="onClick()" fill="outline">
+          Pilihan 1
+        </ion-button>
+      </ion-col>
+      <ion-col size="8">
+        <ion-button expand="block" (click)="onClick()" fill="outline">
+          Pilihan 2
+        </ion-button>
+      </ion-col>
+      <ion-col size="8">
+        <ion-button expand="block" (click)="onClick()" fill="outline">
+          Pilihan 3
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="guessNav">
+      <ion-col size="6">
+        <ion-icon name="skip-backward"></ion-icon>
+      </ion-col>
+      <ion-col class="rightt" size="6">
+        <ion-icon name="skip-forward"></ion-icon>
+      </ion-col>
+        
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,15 @@
+ion-content, ion-toolbar{
+  --background: #f5f2df;
+  --border: unset;
+}
+
+ion-slides{
+  height: 90%;
+  ion-slide{
+    display: block;
+  
+    .slide-img{
+      padding: 30vh 10vw;
+    }
+  }
+}

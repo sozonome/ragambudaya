@@ -1,14 +1,58 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+  <ion-toolbar class="homepage">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="sidemenu"></ion-menu-button>
+    </ion-buttons>
+    <div class="logoContainer">
+      <img class="logo" src="../../assets/img/ragabud.svg" alt="">
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+<ion-content class="homepage">
+  <ion-grid text-center>
+    <p class="greetText" text-center>
+      Halo, apa kabar? Gimane kabarnye? <br> 
+      Pripun habare? Peu na haba? <br>
+      Apo kabar? Kumaha damang? <br>
+      Piye kabare? Apa kareba? <br>
+      Sampun napi gatrane?
+    </p>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card [routerLink]="['/', 'infografik-wayang']">
+          <ion-card-content>
+            <img src="../../assets//img/home/infografik.svg" alt="">
+            <p>Infografik wayang</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card [routerLink]="['/', 'potret-budaya']">
+          <ion-card-content>
+            <img src="../../assets//img/home/potret.svg" alt="">
+            <p>Potret Budaya</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card [routerLink]="['/', 'tebak-gambar']">
+          <ion-card-content>
+            <img src="../../assets/img/home/tebak_gambar.svg" alt="">
+            <p>Tebak Gambar</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card [routerLink]="['/', 'about']">
+          <ion-card-content>
+            <img src="../../assets/img/home/profil.svg" alt="">
+            <p>About</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

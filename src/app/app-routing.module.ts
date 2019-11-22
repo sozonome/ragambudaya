@@ -2,8 +2,26 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'splashscreen', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
+  { path: 'onboarding', loadChildren: './intro/onboarding/onboarding.module#OnboardingPageModule' },
+  { path: 'splashscreen', loadChildren: './intro/splashscreen/splashscreen.module#SplashscreenPageModule' },
+  {
+    path: 'infografik-wayang',
+    loadChildren: './home/infografik-wayang/infografik-wayang.module#InfografikWayangPageModule'
+  },
+  {
+    path: 'potret-budaya',
+    loadChildren: './home/potret-budaya/potret-budaya.module#PotretBudayaPageModule'
+  },
+  {
+    path: 'tebak-gambar',
+    loadChildren: './home/tebak-gambar/tebak-gambar.module#TebakGambarPageModule'
+  },
+  {
+    path: 'about',
+    loadChildren: './home/about/about.module#AboutPageModule'
+  },
 ];
 
 @NgModule({

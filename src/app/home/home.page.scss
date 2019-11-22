@@ -1,1 +1,36 @@
+ion-title{
+  font-family: 'Cinzel Decorative', cursive;
+}
 
+ion-content{
+  &.homepage{
+    --background: url('../../assets/img/home/bg_home.svg');
+  }
+  .greetText{
+    font-size: 0.7em;
+  }
+}
+
+ion-card{
+  --background: #fff7d0;
+  ion-card-content{
+    img{
+      height: 30vw;
+    }
+    p{
+      padding: 20px 0;
+    }
+  }
+}
+
+.logoContainer{
+  margin: 0 20vw;
+}
+.logo{
+  width: 40vw;
+}
+
+ion-card{
+  height: 200px;
+  font-weight: bold;
+}
