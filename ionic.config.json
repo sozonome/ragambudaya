@@ -1,5 +1,7 @@
 {
   "name": "hatchoko-ionic-app",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
