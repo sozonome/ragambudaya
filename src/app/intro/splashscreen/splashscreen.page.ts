@@ -1,21 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-splashscreen',
-  templateUrl: './splashscreen.page.html',
-  styleUrls: ['./splashscreen.page.scss'],
+  selector: "app-splashscreen",
+  templateUrl: "./splashscreen.page.html",
+  styleUrls: ["./splashscreen.page.scss"]
 })
 export class SplashscreenPage implements OnInit {
-
-  constructor(
-    private router: Router,
-  ) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    setTimeout(()=>{
-      this.router.navigate(['/', 'onboarding'])
-    }, 2000)
+    setTimeout(() => {
+      this.router.navigate(["/", "onboarding"]);
+    }, 2000);
   }
-
 }
