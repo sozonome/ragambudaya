@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "hatchoko-ionic-app",
+  "appId": "com.hatchoko.app",
+  "appName": "ragambudaya",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
