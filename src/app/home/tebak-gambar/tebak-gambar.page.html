@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-menu-button menu="sidemenu"></ion-menu-button>
     </ion-buttons>
     <ion-title>Tebak Gambar</ion-title>
   </ion-toolbar>
@@ -26,11 +26,7 @@
     </ion-row>
     <ion-row *ngIf="questions && showChoice" class="options">
       <ion-col *ngFor="let answer of questions[curr].answers" size="12">
-        <ion-button
-          expand="block"
-          (click)="checkAnswer(answer.correct, questions[curr].answers)"
-          fill="outline"
-        >
+        <ion-button expand="block" (click)="checkAnswer(answer.correct, questions[curr].answers)" fill="outline">
           {{answer? answer.answer : null}}
         </ion-button>
       </ion-col>

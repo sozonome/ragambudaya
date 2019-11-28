@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Wayang } from '../wayang.model';
 import { WayangService } from '../wayang.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detail-wayang',
@@ -11,6 +12,7 @@ export class DetailWayangPage implements OnInit {
   wayang: Wayang;
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private wayangServices: WayangService
   ) { }
 

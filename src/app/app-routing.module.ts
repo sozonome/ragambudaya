@@ -8,8 +8,8 @@ const routes: Routes = [
   { path: 'splashscreen', loadChildren: './intro/splashscreen/splashscreen.module#SplashscreenPageModule' },
   {
     path: 'infografik-wayang',
-    loadChildren: [
-      { path: '/', loadChildren: './home/infografik-wayang/infografik-wayang.module#InfografikWayangPageModule'}
+    children: [
+      { path: '', loadChildren: './home/infografik-wayang/infografik-wayang.module#InfografikWayangPageModule'},
       { path: 'detail-wayang/:wayangId', loadChildren: './home/infografik-wayang/detail-wayang/detail-wayang.module#DetailWayangPageModule' },
     ]
   },
