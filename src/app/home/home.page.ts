@@ -17,14 +17,10 @@ export class HomePage {
   ) {}
 
   ionViewWillEnter(){
-<<<<<<< HEAD
     console.log(this.questions)
     this.tebakGambarServices.fetchQuiz().subscribe(quiz=>
       this.questions = quiz 
     );
     this.wayangSvc.fetchWayang().subscribe();
-=======
-    this.tebakGambarServices.fetchQuiz().subscribe();
->>>>>>> d0527abd0e4c3ae972122aac1a6fe8181341bd6f
   }
 }
