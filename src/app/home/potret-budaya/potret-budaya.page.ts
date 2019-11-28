@@ -18,13 +18,14 @@ export class PotretBudayaPage implements OnInit {
 
   async takePicture() {
     const image = await Plugins.Camera.getPhoto({
-      quality: 100,
+      quality: 80,
       allowEditing: false,
-      resultType: CameraResultType.DataUrl,
+      resultType: CameraResultType.Uri,
       source: CameraSource.Camera,
-      
+      saveToGallery: false
     });
-    this.webpathn = image.dataUrl;
-    this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
+    // this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
+    this.photo = image.webPath;
+    this.webpathn = image.webPath;
   }
 }

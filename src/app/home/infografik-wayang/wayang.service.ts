@@ -27,7 +27,9 @@ export class WayangService {
               wayang.push({
                 content: resp[key].content,
                 image: resp[key].image,
-                title: resp[key].title
+                title: resp[key].title,
+                thumbnail: resp[key].thumbnail,
+                id: resp[key].id
               });
             }
           }
