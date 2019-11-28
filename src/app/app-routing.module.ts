@@ -8,7 +8,10 @@ const routes: Routes = [
   { path: 'splashscreen', loadChildren: './intro/splashscreen/splashscreen.module#SplashscreenPageModule' },
   {
     path: 'infografik-wayang',
-    loadChildren: './home/infografik-wayang/infografik-wayang.module#InfografikWayangPageModule'
+    loadChildren: [
+      { path: '/', loadChildren: './home/infografik-wayang/infografik-wayang.module#InfografikWayangPageModule'}
+      { path: 'detail-wayang/:wayangId', loadChildren: './home/infografik-wayang/detail-wayang/detail-wayang.module#DetailWayangPageModule' },
+    ]
   },
   {
     path: 'potret-budaya',
@@ -23,7 +26,7 @@ const routes: Routes = [
     loadChildren: './home/about/about.module#AboutPageModule'
   },
   { path: 'after-quiz', loadChildren: './home/tebak-gambar/after-quiz/after-quiz.module#AfterQuizPageModule' },
-  { path: 'detail-wayang', loadChildren: './home/infografik-wayang/detail-wayang/detail-wayang.module#DetailWayangPageModule' },
+  
 
 ];
 

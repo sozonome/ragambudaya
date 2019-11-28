@@ -25,7 +25,7 @@
       </ion-col>
     </ion-row>
     <ion-row *ngIf="questions && showChoice" class="options">
-      <ion-col *ngFor="let answer of questions[curr].answers" size="8">
+      <ion-col *ngFor="let answer of questions[curr].answers" size="12">
         <ion-button
           expand="block"
           (click)="checkAnswer(answer.correct, questions[curr].answers)"

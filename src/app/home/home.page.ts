@@ -17,9 +17,7 @@ export class HomePage {
   ) {}
 
   ionViewWillEnter(){
-    this.tebakGambarServices.fetchQuiz().subscribe(quiz=>
-      this.questions = quiz 
-    );
+    this.tebakGambarServices.fetchQuiz().subscribe();
     this.wayangSvc.fetchWayang().subscribe();
   }
 }

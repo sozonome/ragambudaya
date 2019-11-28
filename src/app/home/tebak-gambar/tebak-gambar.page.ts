@@ -68,12 +68,12 @@ export class TebakGambarPage implements OnInit {
   }
 
   nextQuestion() {
-    if(!this.end){
+    if(this.end){
+      this.router.navigate(['/','after-quiz']);
+    } else{
       this.curr++;
       this.showChoice = true;
       this.warning = undefined;
-    } else{
-      this.router.navigate(['/','after-quiz']);
     }
   }
 }
