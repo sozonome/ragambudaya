@@ -9,16 +9,6 @@
 
 <ion-content>
   <ion-grid fixed>
-    <ion-row>
-      <ion-col size="12">
-        <ion-button (click)="checkFetch()">
-          Console Log
-        </ion-button>
-        <ion-button (click)="testScore()">
-          Test
-        </ion-button>
-      </ion-col>
-    </ion-row>
     <ion-row class="hood">
       <ion-col class="leftt" size="6">
         {{questions? questions[curr].question : null}}
@@ -30,34 +20,34 @@
     <ion-row class="guessImg">
       <ion-col size="12">
         <div class="imgContainer">
-          <img src="../../../assets/img/home/tebak_gambar.svg" alt="">
+          <img src="../../../assets/img/home/tebak_gambar.svg" alt="" />
         </div>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="questions" class="options">
+    <ion-row *ngIf="questions && showChoice" class="options">
       <ion-col *ngFor="let answer of questions[curr].answers" size="8">
-        <ion-button expand="block" (click)="checkAnswer(answer.correct)" fill="outline">
+        <ion-button
+          expand="block"
+          (click)="checkAnswer(answer.correct, questions[curr].answers)"
+          fill="outline"
+        >
           {{answer? answer.answer : null}}
         </ion-button>
       </ion-col>
-      <!-- <ion-col size="8">
-        <ion-button expand="block" (click)="onClick()" fill="outline">
-          Pilihan 2
-        </ion-button>
-      </ion-col>
-      <ion-col size="8">
-        <ion-button expand="block" (click)="onClick()" fill="outline">
-          Pilihan 3
-        </ion-button>
-      </ion-col> -->
     </ion-row>
-    <!-- <ion-row class="guessNav">
-      <ion-col size="6">
-        <ion-icon name="skip-backward"></ion-icon>
+    <ion-row *ngIf="warning">
+      <ion-col size="12">
+        <ion-text>
+          <p class="midd">
+            {{warning}}
+          </p>
+        </ion-text>
       </ion-col>
-      <ion-col class="rightt" size="6">
-        <ion-icon name="skip-forward"></ion-icon>
+      <ion-col size="12">
+        <ion-button expand="block" (click)="nextQuestion()">
+          Lanjut
+        </ion-button>
       </ion-col>
-    </ion-row> -->
+    </ion-row>
   </ion-grid>
 </ion-content>
