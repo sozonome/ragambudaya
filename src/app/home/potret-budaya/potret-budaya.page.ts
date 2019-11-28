@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
+import { from } from 'rxjs';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-potret-budaya',
@@ -6,10 +9,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['../home.page.scss', './potret-budaya.page.scss'],
 })
 export class PotretBudayaPage implements OnInit {
-
+  photo: SafeResourceUrl;
+  webpathn: string;
   constructor() { }
 
   ngOnInit() {
   }
 
+  async takePicture() {
+    const image = await Plugins.Camera.getPhoto({
+      quality: 100,
+      allowEditing: false,
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Camera,
+      saveToGallery: true
+    });
+    this.webpathn = image.webPath;
+    this.photo = image.webPath;
+  }
 }
