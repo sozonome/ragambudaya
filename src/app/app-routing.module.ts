@@ -21,7 +21,8 @@ const routes: Routes = [
   {
     path: 'about',
     loadChildren: './home/about/about.module#AboutPageModule'
-  },
+  },  { path: 'detail-wayang', loadChildren: './home/infografik-wayang/detail-wayang/detail-wayang.module#DetailWayangPageModule' },
+
 ];
 
 @NgModule({

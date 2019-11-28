@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Quiz } from './tebak-gambar/quiz.model';
 import { TebakGambarService } from './tebak-gambar/tebak-gambar.service';
+import { WayangService } from './infografik-wayang/wayang.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,8 @@ export class HomePage {
   questions: Quiz[];
 
   constructor(
-    private tebakGambarServices: TebakGambarService
+    private tebakGambarServices: TebakGambarService,
+    private wayangSvc: WayangService
   ) {}
 
   ionViewWillEnter(){
@@ -19,5 +21,6 @@ export class HomePage {
     this.tebakGambarServices.fetchQuiz().subscribe(quiz=>
       this.questions = quiz 
     );
+    this.wayangSvc.fetchWayang().subscribe();
   }
 }

@@ -11,7 +11,7 @@ import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 export class PotretBudayaPage implements OnInit {
   photo: SafeResourceUrl;
   webpathn: string;
-  constructor() { }
+  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
   }
@@ -20,11 +20,11 @@ export class PotretBudayaPage implements OnInit {
     const image = await Plugins.Camera.getPhoto({
       quality: 100,
       allowEditing: false,
-      resultType: CameraResultType.Uri,
+      resultType: CameraResultType.DataUrl,
       source: CameraSource.Camera,
-      saveToGallery: true
+      
     });
-    this.webpathn = image.webPath;
-    this.photo = image.webPath;
+    this.webpathn = image.dataUrl;
+    this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
   }
 }

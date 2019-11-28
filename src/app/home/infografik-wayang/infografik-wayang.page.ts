@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Wayang } from './wayang.model';
+import { WayangService } from './wayang.service';
 
 @Component({
   selector: 'app-infografik-wayang',
@@ -6,10 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['../home.page.scss', './infografik-wayang.page.scss'],
 })
 export class InfografikWayangPage implements OnInit {
+  allWayang: Wayang[] = [];
 
-  constructor() { }
+  constructor(private wayangSvc: WayangService) { }
 
   ngOnInit() {
+    // this.wayangSvc.getAllWayang()
+    // .subscribe(wayangArray => {
+    //   this.allWayang = wayangArray
+    // })
+    // this.wayangSvc.fetchWayang().subscribe();
+    // console.log(this.allWayang)
+  }
+
+  ionViewWillEnter() {
+    this.allWayang = this.wayangSvc.getAllWayang();
+    console.log(this.allWayang)
   }
 
 }
