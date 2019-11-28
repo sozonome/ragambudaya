@@ -22,6 +22,7 @@ const routes: Routes = [
     path: 'about',
     loadChildren: './home/about/about.module#AboutPageModule'
   },
+  { path: 'after-quiz', loadChildren: './home/tebak-gambar/after-quiz/after-quiz.module#AfterQuizPageModule' }
 ];
 
 @NgModule({

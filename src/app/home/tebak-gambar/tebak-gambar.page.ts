@@ -15,7 +15,8 @@ export class TebakGambarPage implements OnInit {
   curr = 0;
   score = 0;
   warning = undefined;
-  showChoice= true;
+  showChoice = true;
+  end = false;
 
   constructor(
     private tebakGambarServices: TebakGambarService,
@@ -37,17 +38,16 @@ export class TebakGambarPage implements OnInit {
       this.showChoice = false;
       this.showWarning('right');
       if (this.curr === this.questions.length - 1) {
-        console.log('End of Questions');
+        this.end=true;
       }
     } else {
       this.showChoice = false;
       this.showWarning('wrong', answers);
     }
-    console.log(correct ? 'Jawaban Betul' : 'Jawaban Salah');
   }
 
-  showWarning(warnType: warnType, answers?:Answer[]) {
-    switch(warnType){
+  showWarning(warnType: warnType, answers?: Answer[]) {
+    switch (warnType) {
       case 'right': {
         this.warning = 'Wah, Jawaban kamu benar !!';
         this.score++;
@@ -55,23 +55,25 @@ export class TebakGambarPage implements OnInit {
       }
       case 'wrong': {
         answers.map(answer => {
-          if(answer.correct){
-            this.warning = 'Jawabanmu salah, yang benar adalah ' + answer.answer;
+          if (answer.correct) {
+            this.warning =
+              'Jawabanmu salah, yang benar adalah ' + answer.answer;
           }
         });
         break;
       }
-      default: break;
+      default:
+        break;
     }
   }
 
-  nextQuestion(){
-    this.curr++;
-    this.showChoice = true;
-    this.warning = undefined;
-  }
-
-  testScore() {
-    this.score++;
+  nextQuestion() {
+    if(!this.end){
+      this.curr++;
+      this.showChoice = true;
+      this.warning = undefined;
+    } else{
+      this.router.navigate(['/','after-quiz']);
+    }
   }
 }
