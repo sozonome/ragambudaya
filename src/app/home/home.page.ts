@@ -15,9 +15,6 @@ export class HomePage {
   ) {}
 
   ionViewWillEnter(){
-    console.log(this.questions)
-    this.tebakGambarServices.fetchQuiz().subscribe(quiz=>
-      this.questions = quiz 
-    );
+    this.tebakGambarServices.fetchQuiz().subscribe();
   }
 }
