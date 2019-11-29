@@ -15,7 +15,7 @@ export class TebakGambarService {
   fetchQuiz() {
     return this.http
       .get<{ [key: string]: Quiz }>(
-        'https://hatchoko-ragam-budaya.firebaseio.com/data/quiz.json'
+        'https://hatchoko-ragam-budaya.firebaseio.com/data/quiz/questions.json'
       )
       .pipe(
         map(resp => {

@@ -1,7 +1,7 @@
 {
   "name": "hatchoko-ionic-app",
   "integrations": {
-    "capacitor": {}
+    "cordova": {}
   },
   "type": "angular"
 }
