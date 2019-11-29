@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "mulai-gan": "ionic cordova build android --prod --release"
+    "mulai-gan": "ionic cordova build android --prod --releas && ionic cordova run android"
   },
   "private": true,
   "dependencies": {
