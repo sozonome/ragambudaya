@@ -31,6 +31,6 @@ export class InfografikWayangPage implements OnInit {
   }
 
   wayangDetail(id: string){
-    this.router.navigate(['/', 'home', 'infografik-wayang', 'detail-wayang', id]);
+    this.router.navigate(['/','infografik-wayang', 'detail-wayang', id]);
   }
 }
