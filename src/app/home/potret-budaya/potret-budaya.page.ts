@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 @Component({
   selector: 'app-potret-budaya',
@@ -7,25 +8,33 @@ import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['../home.page.scss', './potret-budaya.page.scss'],
 })
 export class PotretBudayaPage implements OnInit {
-  photo: SafeResourceUrl;
+  photo: string;
   webpathn: string;
   msg: string;
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(
+    private camera: Camera,
+    private webview: WebView
+  ) { }
 
   ngOnInit() {
   }
 
   async takePicture() {
-    // const image = await Plugins.Camera.getPhoto({
-    //   quality: 80,
-    //   allowEditing: false,
-    //   resultType: CameraResultType.Uri,
-    //   source: CameraSource.Camera,
-    //   saveToGallery: false
-    // });
-    // this.webpathn = image.dataUrl;
+    const options: CameraOptions = {
+      quality: 80,
+      allowEdit: false,
+      saveToPhotoAlbum: true,
+      correctOrientation: true,
+      encodingType: this.camera.EncodingType.JPEG,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      mediaType: this.camera.MediaType.PICTURE
+    }
     
-    // this.photo = image.webPath;
+    this.camera.getPicture(options).then((imageData) => {
+      this.photo = this.webview.convertFileSrc(imageData);
+    }, (err) => {
+     // Handle error
+    });
   }
 
   sharePicture(){
