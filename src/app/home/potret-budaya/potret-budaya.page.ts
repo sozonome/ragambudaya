@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
-// import { SocialSharing } from '@ionic-native/social-sharing/nx';
-import { Instagram } from '@ionic-native/instagram/ngx';
-import { Base64 } from '@ionic-native/base64/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+// import { Instagram } from '@ionic-native/instagram/ngx';
+// import { Base64 } from '@ionic-native/base64/ngx';
 
 @Component({
   selector: 'app-potret-budaya',
@@ -19,17 +19,17 @@ export class PotretBudayaPage implements OnInit {
   constructor(
     private camera: Camera,
     private webview: WebView,
-    // private socialSharing: SocialSharing,
-    private instagram: Instagram,
-    private base64: Base64
+    private socialSharing: SocialSharing,
+    // private instagram: Instagram,
+    // private base64: Base64
   ) { }
 
   ngOnInit() {
   }
 
-  async takePicture() {
+  takePicture() {
     const options: CameraOptions = {
-      quality: 5,
+      quality: 100,
       allowEdit: false,
       saveToPhotoAlbum: true,
       correctOrientation: true,
@@ -41,21 +41,23 @@ export class PotretBudayaPage implements OnInit {
     this.camera.getPicture(options).then((imageData) => {
       this.photo = this.webview.convertFileSrc(imageData);
       this.imgData = imageData
-
     }, (err) => {
-     // Handle error
+      // Handle error
+    }).then(() => {
+      // this.convertImage();
     });
   }
 
+  // convertImage() {
+  //   this.base64.encodeFile(this.imgData).then((base64File: string) => {
+  //     this.imgData2 = base64File;
+  //   })
+  // }
+
   sharePicture(){
-    this.base64.encodeFile(this.imgData).then((base64File: string) => {
-      this.imgData2 = base64File;
-    }).then(() => {
-      this.instagram.share(this.imgData2, "share ini");
-    })
     // this.instagram.share('data:image/jpeg;base64,' + this.imgData, "share ini");
 
-    // this.socialSharing.shareViaInstagram("aku cinta budaya", this.imgData);
+    this.socialSharing.share(null, null, this.imgData, null);
     // Plugins.FileSharer.share({
     //   filename: "images.jpg",
     //   base64data: this.photo,
