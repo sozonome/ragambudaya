@@ -8,19 +8,15 @@
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="takePicture()" expand="full" fill="outline">Outline + Full</ion-button>
+  <ion-button (click)="takePicture()" expand="full">Take Picture</ion-button>
   <ion-card *ngIf="!photo">
     <ion-card-content>
-      Belum ada foto
+      Belum ada foto 
     </ion-card-content>
   </ion-card>
   <ion-img *ngIf="photo" [src]="photo"></ion-img>
-  <img *ngIf="photo" src="https://cdn2.iconfinder.com/data/icons/rounded-white-basic-ui-set-3/139/List-RoundedWhite-2-512.png"/>
   <p>path : {{photo}}</p>
-  <p>message : {{msg}}</p>
-  <ion-fab>
-    <ion-fab-button (click)="sharePicture()">
-      <ion-icon name="share"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <p>imgDatacon : {{imgData}}</p>
+  <p>imgDatacon2 : {{imgData2}}</p>
+  <ion-button (click)="sharePicture()" expand="full">Share</ion-button>
 </ion-content>

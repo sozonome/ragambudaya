@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { Camera } from '@ionic-native/camera/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { Instagram } from '@ionic-native/instagram/ngx';
+import { Base64 } from '@ionic-native/base64/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +23,8 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
     SplashScreen,
     Camera,
     WebView,
+    Instagram,
+    Base64,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
