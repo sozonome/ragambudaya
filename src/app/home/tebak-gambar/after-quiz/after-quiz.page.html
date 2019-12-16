@@ -1,12 +1,46 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <!-- <ion-back-button href="/home"></ion-back-button> -->
-      </ion-buttons>
-      <ion-title>Tebak Gambar - Finish</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="sidemenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Tebak Gambar - Finish</ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
- Selesai
+  <ion-grid fixed>
+    <ion-row class="ion-text-center">
+      <ion-col size="12">
+        <h1>High Score</h1>
+      </ion-col>
+      <ion-col size="6"><h3>Name</h3></ion-col>
+      <ion-col size="6">
+        <h3>Score</h3>
+      </ion-col>
+    </ion-row>
+
+    <div *ngIf="scores">
+      <ion-row *ngFor="let score of scores" class="ion-text-center">
+        <ion-col size="6">
+          {{score.name}}
+        </ion-col>
+        <ion-col size="6">
+          {{score.score}}
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-button expand="block" (click)="playAgain()">
+          <b>Main Lagi</b>
+        </ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button expand="block" color="tertiary" (click)="home()">
+          Beranda
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
