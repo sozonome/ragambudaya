@@ -8,3 +8,9 @@ export interface Answer{
   answer: string,
   correct: boolean
 }
+
+export interface Score {
+  id: string, 
+  name: string,
+  score: number,
+}

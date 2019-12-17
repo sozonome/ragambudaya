@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Quiz, Answer } from './quiz.model';
 import { TebakGambarService } from './tebak-gambar.service';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 type warnType = 'right' | 'wrong';
 
@@ -20,13 +21,18 @@ export class TebakGambarPage implements OnInit {
 
   constructor(
     private tebakGambarServices: TebakGambarService,
-    private router: Router
+    private router: Router,
+    private alertController: AlertController,
   ) {}
 
   ngOnInit() {}
 
   ionViewWillEnter() {
     this.questions = this.tebakGambarServices.getAllQuiz();
+    if(this.questions.length == 0){
+      this.router.navigate(['', 'home']);
+      this.tebakGambarServices.tebakGambar();
+    }
   }
 
   checkFetch() {
@@ -69,11 +75,35 @@ export class TebakGambarPage implements OnInit {
 
   nextQuestion() {
     if(this.end){
-      this.router.navigate(['/','after-quiz']);
+      this.inputNewHighScore(this.score);
     } else{
       this.curr++;
       this.showChoice = true;
       this.warning = undefined;
     }
+  }
+
+  async inputNewHighScore(score: number){
+    const inputForm = await this.alertController.create({
+      header: 'Selamat! Kamu berhasil menyelesaikan permainan!',
+      subHeader: 'Masukkan namamu dibawah',
+      inputs: [
+        {
+          name: 'playerName',
+          type: 'text'
+        }
+      ],
+      buttons: [
+        {
+          text: 'OK',
+          handler: data => {
+            this.tebakGambarServices.addNewScore(data.playerName, score).subscribe();
+            this.tebakGambarServices.highScore();
+          }
+        }
+      ]
+    })
+
+    await inputForm.present();
   }
 }
