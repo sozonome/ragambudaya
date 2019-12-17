@@ -9,9 +9,8 @@
 
 <ion-content>
   <ion-button (click)="takePicture()" expand="full">Take Picture</ion-button>
-  <ion-button (click)="sharePicture()" expand="full">Share</ion-button>
-  <ion-button (click)="sharePicture2()" expand="full">Share2</ion-button>
   <ion-button (click)="addFrame()" expand="full">Add Frame</ion-button>
+  <ion-button (click)="sharePicture()" [disabled]="!sharePic" expand="full">Share</ion-button>
   <ion-card *ngIf="!photo">
     <ion-card-header>Belum ada foto</ion-card-header>
     <ion-card-content>
@@ -24,9 +23,6 @@
       <ion-img *ngIf="photo" [src]="photo"></ion-img> 
     </ion-card-content>
   </ion-card>
-  <p>path : {{photo}}</p>
-  <p>imgDatacon : {{imgData}}</p>
-  <p>blobData : {{blobImage}}</p>
   <ion-card *ngIf="photo">
     <ion-card-header>Watermarked</ion-card-header>
     <ion-card-content>
