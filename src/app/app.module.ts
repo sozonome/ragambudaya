@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CameraPreview } from '@ionic-native/camera-preview/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +23,8 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     SplashScreen,
     CameraPreview,
     SocialSharing,
+    Camera,
+    WebView,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
