@@ -8,9 +8,10 @@
 </ion-header>
 
 <ion-content>
+  <ion-button (click)="runCamera()" expand="full">Open Camera</ion-button>
   <ion-button (click)="takePicture()" expand="full">Take Picture</ion-button>
   <ion-button (click)="addFrame()" expand="full">Add Frame</ion-button>
-  <ion-button (click)="sharePicture()" [disabled]="!sharePic" expand="full">Share</ion-button>
+  <ion-button (click)="sharePicture()" expand="full">Share</ion-button>
   <ion-card *ngIf="!photo">
     <ion-card-header>Belum ada foto</ion-card-header>
     <ion-card-content>
@@ -20,13 +21,14 @@
   <ion-card *ngIf="photo">
     <ion-card-header>Original</ion-card-header>
     <ion-card-content>
-      <ion-img *ngIf="photo" [src]="photo"></ion-img> 
+      <ion-img *ngIf="!sharePic" [src]="photo"></ion-img>
     </ion-card-content>
   </ion-card>
   <ion-card *ngIf="photo">
-    <ion-card-header>Watermarked</ion-card-header>
+    <ion-card-header>Framed</ion-card-header>
     <ion-card-content>
-      <img #framedPhoto>
+      <ion-img [src]="sharePic"></ion-img>
     </ion-card-content>
   </ion-card>
+  <img #framedPhoto>
 </ion-content>

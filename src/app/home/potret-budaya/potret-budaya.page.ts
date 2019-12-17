@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
@@ -9,6 +9,7 @@ import * as watermark from 'watermarkjs';
   selector: 'app-potret-budaya',
   templateUrl: './potret-budaya.page.html',
   styleUrls: ['../home.page.scss', './potret-budaya.page.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PotretBudayaPage implements OnInit {
   
@@ -28,15 +29,15 @@ export class PotretBudayaPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.runCamera();
+    // this.runCamera();
   }
 
   runCamera() {
     const cameraPreviewOpts: CameraPreviewOptions = {
-      x: 0,
-      y: 0,
-      width: window.screen.width,
-      height: window.screen.height,
+      x: window.screen.width * 0.1,
+      y: window.screen.height * 0.2,
+      width: window.screen.width * 0.8,
+      height: window.screen.height * 0.6,
       camera: 'rear',
       tapPhoto: true,
       previewDrag: true,
@@ -59,7 +60,7 @@ export class PotretBudayaPage implements OnInit {
     const pictureOpts: CameraPreviewPictureOptions = {
       width: 1280,
       height: 1280,
-      quality: 85
+      quality: 100
     }
 
     this.cameraPreview.takeSnapshot(pictureOpts).then((imageData) => {
@@ -71,8 +72,8 @@ export class PotretBudayaPage implements OnInit {
       .then(blob => {
         this.blobImage = blob;
       });
-
       this.cameraPreview.stopCamera();
+
     }, (err) => {
       console.log(err);
       this.photo = 'assets/img/test.jpg';
@@ -80,8 +81,8 @@ export class PotretBudayaPage implements OnInit {
   }
 
   addFrame(){
-    watermark([this.blobImage, 'assets/img/frame_kita.png'])
-    .image(watermark.image.center(0.8))
+    watermark([this.blobImage, 'assets/img/LAUT.png'])
+    .image(watermark.image.center(1))
     .then(img => {
       this.waterMarkImage.nativeElement.src = img.src;
       this.sharePic = img.src;
@@ -92,29 +93,4 @@ export class PotretBudayaPage implements OnInit {
     this.socialSharing.share(null, null, this.sharePic, null);
     //nanti tambahin handler error
   }
-
-  // sharePicture2(){
-  //   this.socialSharing.share(null, null, this.blobImage, null);
-  //   //nanti tambahin handler error
-  // }
-
-  
-//   dataURItoBlob(dataURI) {
-//     // convert base64 to raw binary data held in a string
-//     var byteString = atob(dataURI.split(',')[1]);
-
-//     // separate out the mime component
-//     var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-
-//     // write the bytes of the string to an ArrayBuffer
-//     var arrayBuffer = new ArrayBuffer(byteString.length);
-//     var _ia = new Uint8Array(arrayBuffer);
-//     for (var i = 0; i < byteString.length; i++) {
-//         _ia[i] = byteString.charCodeAt(i);
-//     }
-
-//     var dataView = new DataView(arrayBuffer);
-//     var blob = new Blob([dataView], { type: mimeString });
-//     return blob;
-// }
 }
