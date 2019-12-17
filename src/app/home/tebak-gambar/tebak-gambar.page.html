@@ -12,17 +12,25 @@
 
     <ion-row class="hood">
       <ion-col class="leftt" size="6">
-        {{questions? questions[curr].question : null}}
+        
       </ion-col>
       <ion-col class="rightt" size="6">
         Skor : {{score}}
       </ion-col>
     </ion-row>
-    
-    <ion-row class="guessImg">
+
+    <ion-row class="ion-text-center">
+      <ion-col size="1">
+      </ion-col>
+      <ion-col size="10">
+        <h3>{{questions? questions[curr].question : null}}</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="questions && questions[curr].image !== null" class="guessImg">
       <ion-col size="12">
         <div class="imgContainer">
-          <img src="../../../assets/img/home/tebak_gambar.svg" alt="" />
+          <img [src]="questions[curr].image" alt="" />
         </div>
       </ion-col>
     </ion-row>

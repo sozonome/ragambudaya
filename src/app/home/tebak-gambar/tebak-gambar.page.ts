@@ -30,14 +30,44 @@ export class TebakGambarPage implements OnInit {
     private alertController: AlertController,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.tebakGambarServices.getAllQuiz().subscribe((questions)=>{
+      let randomPick = this.shuffle(questions);
+      this.questions = randomPick.slice(0, 10);
+    });
+  }
 
   ionViewWillEnter() {
-    this.questions = this.tebakGambarServices.getAllQuiz();
-    if(this.questions.length == 0){
-      this.router.navigate(['', 'home']);
+    if(this.end || this.questions.length == 0){
+      this.end = false;
+      this.router.navigate(['/', 'home']);
       this.tebakGambarServices.tebakGambar();
     }
+    // console.log(
+    //   this.questions,
+    //   this.end,
+    //   this.score,
+    //   this.curr
+    // );
+  }
+
+  shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
   }
 
   checkFetch() {

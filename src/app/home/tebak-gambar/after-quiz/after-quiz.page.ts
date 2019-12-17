@@ -24,9 +24,7 @@ export class AfterQuizPage implements OnInit {
     let fetchedScores = this.tebakGambarServices.getAllScores();
     //Sorting score from the highest
     let sortedScores = fetchedScores.sort(function(a, b){return b.score - a.score});
-    
     this.scores = sortedScores.slice(0, 10);
-    console.log(fetchedScores, sortedScores, this.scores)
   }
 
   checkFetch(){
@@ -35,7 +33,6 @@ export class AfterQuizPage implements OnInit {
 
   playAgain(){
     //To reset quiz from beginning
-    this.router.navigate(['/', 'home']);
     this.router.navigate(['/', 'tebak-gambar']);
   }
 }

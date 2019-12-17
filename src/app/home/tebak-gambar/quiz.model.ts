@@ -1,6 +1,7 @@
 export interface Quiz{
   id: string,
   question: string,
+  image?: string,
   answers: Answer[]
 }
 

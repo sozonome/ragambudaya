@@ -28,10 +28,10 @@ export class TebakGambarService {
     }).then(loadingEl=>{
       loadingEl.present();
       setTimeout(()=>{
-        let check = this.getAllQuiz();
+        let check = this.getAllQuizzes();
         if(check.length>0){
           loadingEl.dismiss();
-          this.router.navigate(['', 'tebak-gambar'])
+          this.router.navigate(['/', 'tebak-gambar'])
         }else{
           loadingEl.dismiss();
           this.fetchQuizAlert();
@@ -77,6 +77,7 @@ export class TebakGambarService {
             if (resp.hasOwnProperty(key)) {
               quiz.push({
                 id: resp[key].id,
+                image: resp[key].image ? resp[key].image : null,
                 question: resp[key].question,
                 answers: resp[key].answers
               });
@@ -91,6 +92,10 @@ export class TebakGambarService {
   }
 
   getAllQuiz() {
+    return this.quizzes.asObservable();
+  }
+
+  getAllQuizzes(){
     return this.quizzes.getValue();
   }
 
