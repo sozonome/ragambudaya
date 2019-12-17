@@ -4,6 +4,7 @@ import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, Camer
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import * as watermark from 'watermarkjs';
+import { resolve } from 'url';
 
 @Component({
   selector: 'app-potret-budaya',
@@ -20,6 +21,7 @@ export class PotretBudayaPage implements OnInit {
   reset: boolean;
   blobImage: any = null;
   sharePic: any;
+  berhasil: string;
   
   constructor(
     private camera: Camera,
@@ -57,40 +59,49 @@ export class PotretBudayaPage implements OnInit {
   }
 
   takePicture() {
-    const pictureOpts: CameraPreviewPictureOptions = {
-      width: 1280,
-      height: 1280,
-      quality: 100
-    }
+    return new Promise((resolve, reject) => {
+      const pictureOpts: CameraPreviewPictureOptions = {
+        width: 1280,
+        height: 1280,
+        quality: 100
+      }
 
-    this.cameraPreview.takeSnapshot(pictureOpts).then((imageData) => {
-      this.reset = true
-      this.photo = 'data:image/jpeg;base64,' + imageData;
-      
-      fetch(this.photo)
-      .then(res => res.blob())
-      .then(blob => {
-        this.blobImage = blob;
+      this.cameraPreview.takeSnapshot(pictureOpts).then((imageData) => {
+        this.reset = true
+        this.photo = 'data:image/jpeg;base64,' + imageData;
+        
+        fetch(this.photo)
+        .then(res => res.blob())
+        .then(blob => {
+          this.blobImage = blob;
+        });
+        this.cameraPreview.stopCamera();
+        
       });
-      this.cameraPreview.stopCamera();
-
-    }, (err) => {
-      console.log(err);
-      this.photo = 'assets/img/test.jpg';
-    });
+      resolve();
+    })
   }
-
+  
   addFrame(){
     watermark([this.blobImage, 'assets/img/LAUT.png'])
     .image(watermark.image.center(1))
     .then(img => {
-      this.waterMarkImage.nativeElement.src = img.src;
       this.sharePic = img.src;
+      // this.waterMarkImage.nativeElement.src = img.src;
     })
+    this.berhasil = "BAELFSKCJSBDKFCNBSALOEJFBLSIEUFDBDOS"
+  }
+  
+  pictureShare(){
+    this.takePicture().then( () => this.addFrame());
   }
 
   sharePicture(){
     this.socialSharing.share(null, null, this.sharePic, null);
     //nanti tambahin handler error
+  }
+
+  ionViewWillLeave(){
+    this.cameraPreview.stopCamera();
   }
 }
