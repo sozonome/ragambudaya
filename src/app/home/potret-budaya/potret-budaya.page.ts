@@ -1,10 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview/ngx';
-import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import * as watermark from 'watermarkjs';
-import { resolve } from 'url';
 
 @Component({
   selector: 'app-potret-budaya',
@@ -14,8 +11,6 @@ import { resolve } from 'url';
 })
 export class PotretBudayaPage implements OnInit {
   
-  @ViewChild('framedPhoto', {static: false}) waterMarkImage: ElementRef;
-  
   photo: string = null;
   imgData: any;
   reset: boolean;
@@ -24,14 +19,11 @@ export class PotretBudayaPage implements OnInit {
   berhasil: string;
   
   constructor(
-    private camera: Camera,
     private cameraPreview: CameraPreview,
-    private webview: WebView,
     private socialSharing: SocialSharing
   ) { }
 
   ngOnInit() {
-    // this.runCamera();
   }
 
   runCamera() {
@@ -56,30 +48,28 @@ export class PotretBudayaPage implements OnInit {
         console.log(err)
       }
     );
+
   }
 
   takePicture() {
-    return new Promise((resolve, reject) => {
-      const pictureOpts: CameraPreviewPictureOptions = {
-        width: 1280,
-        height: 1280,
-        quality: 100
-      }
+    const pictureOpts: CameraPreviewPictureOptions = {
+      width: 1280,
+      height: 1280,
+      quality: 100
+    }
 
-      this.cameraPreview.takeSnapshot(pictureOpts).then((imageData) => {
-        this.reset = true
-        this.photo = 'data:image/jpeg;base64,' + imageData;
-        
-        fetch(this.photo)
-        .then(res => res.blob())
-        .then(blob => {
-          this.blobImage = blob;
-        });
-        this.cameraPreview.stopCamera();
-        
+    this.cameraPreview.takeSnapshot(pictureOpts).then((imageData) => {
+      this.reset = true
+      this.photo = 'data:image/jpeg;base64,' + imageData;
+      
+      fetch(this.photo)
+      .then(res => res.blob())
+      .then(blob => {
+        this.blobImage = blob;
+        this.addFrame();
       });
-      resolve();
-    })
+      this.cameraPreview.stopCamera();
+    });
   }
   
   addFrame(){
@@ -87,18 +77,12 @@ export class PotretBudayaPage implements OnInit {
     .image(watermark.image.center(1))
     .then(img => {
       this.sharePic = img.src;
-      // this.waterMarkImage.nativeElement.src = img.src;
     })
     this.berhasil = "BAELFSKCJSBDKFCNBSALOEJFBLSIEUFDBDOS"
-  }
-  
-  pictureShare(){
-    this.takePicture().then( () => this.addFrame());
   }
 
   sharePicture(){
     this.socialSharing.share(null, null, this.sharePic, null);
-    //nanti tambahin handler error
   }
 
   ionViewWillLeave(){

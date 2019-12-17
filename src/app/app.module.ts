@@ -9,9 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { Camera } from '@ionic-native/camera/ngx';
 import { CameraPreview } from '@ionic-native/camera-preview/ngx';
-import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @NgModule({
@@ -21,9 +19,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
   providers: [
     StatusBar,
     SplashScreen,
-    Camera,
     CameraPreview,
-    WebView,
     SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
