@@ -36,7 +36,7 @@ export class TebakGambarService {
           loadingEl.dismiss();
           this.fetchQuizAlert();
         }
-      }, 2000)
+      }, 1000)
     })
   }
 
@@ -49,7 +49,7 @@ export class TebakGambarService {
       setTimeout(()=>{
         loadingEl.dismiss();
         this.router.navigate(['', 'after-quiz'])
-      }, 2000)
+      }, 1000)
     })
   }
 

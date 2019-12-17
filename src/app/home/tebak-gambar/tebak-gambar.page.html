@@ -9,6 +9,7 @@
 
 <ion-content>
   <ion-grid fixed>
+
     <ion-row class="hood">
       <ion-col class="leftt" size="6">
         {{questions? questions[curr].question : null}}
@@ -17,6 +18,7 @@
         Skor : {{score}}
       </ion-col>
     </ion-row>
+    
     <ion-row class="guessImg">
       <ion-col size="12">
         <div class="imgContainer">
@@ -24,13 +26,23 @@
         </div>
       </ion-col>
     </ion-row>
+
+    <ion-row *ngIf="showTimer">
+      <ion-col size="12" class="ion-text-center">
+        Timer : {{timerCount}}
+      </ion-col>
+    </ion-row>
+    
+    <!-- Answer Choices -->
     <ion-row *ngIf="questions && showChoice" class="options">
       <ion-col *ngFor="let answer of questions[curr].answers" size="12">
-        <ion-button expand="block" (click)="checkAnswer(answer.correct, questions[curr].answers)" fill="outline">
+        <ion-button expand="block" (click)="checkAnswer(answer.correct, timerCount, questions[curr].answers)" fill="outline">
           {{answer? answer.answer : null}}
         </ion-button>
       </ion-col>
     </ion-row>
+
+    <!-- After Answer -->
     <ion-row *ngIf="warning">
       <ion-col size="12">
         <ion-text>
@@ -45,5 +57,6 @@
         </ion-button>
       </ion-col>
     </ion-row>
+
   </ion-grid>
 </ion-content>

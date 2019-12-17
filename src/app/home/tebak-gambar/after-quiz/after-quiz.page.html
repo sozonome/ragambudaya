@@ -20,6 +20,7 @@
     </ion-row>
 
     <div *ngIf="scores">
+      
       <ion-row *ngFor="let score of scores" class="ion-text-center">
         <ion-col size="6">
           {{score.name}}
@@ -32,12 +33,12 @@
 
     <ion-row>
       <ion-col size="12">
-        <ion-button expand="block" (click)="playAgain()">
+        <ion-button expand="block"  (click)="playAgain()">
           <b>Main Lagi</b>
         </ion-button>
       </ion-col>
       <ion-col size="12">
-        <ion-button expand="block" color="tertiary" (click)="home()">
+        <ion-button expand="block" color="tertiary" [routerLink]="['/', 'home']">
           Beranda
         </ion-button>
       </ion-col>

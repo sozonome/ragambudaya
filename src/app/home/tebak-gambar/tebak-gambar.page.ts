@@ -4,20 +4,25 @@ import { TebakGambarService } from './tebak-gambar.service';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
-type warnType = 'right' | 'wrong';
+type warnType = 'right' | 'wrong' | 'missed';
 
 @Component({
   selector: 'app-tebak-gambar',
   templateUrl: './tebak-gambar.page.html',
   styleUrls: ['../home.page.scss', './tebak-gambar.page.scss']
 })
+
 export class TebakGambarPage implements OnInit {
-  questions: Quiz[];
-  curr = 0;
-  score = 0;
-  warning = undefined;
-  showChoice = true;
-  end = false;
+  questions: Quiz[]; //Questions
+  curr = 0; //Current Question Pointer
+  score = 0; //Current Score
+  warning = undefined; //Warning Message (after answer)
+  showChoice = true; 
+  end = false; // End of Quiz
+
+  timerInterval = setInterval(() => { this.timerScore() }, 1000);;
+  timerCount = 15; 
+  showTimer = true;
 
   constructor(
     private tebakGambarServices: TebakGambarService,
@@ -39,34 +44,69 @@ export class TebakGambarPage implements OnInit {
     console.log(this.questions);
   }
 
-  checkAnswer(correct: boolean, answers: Answer[]) {
-    if (correct) {
-      this.showChoice = false;
-      this.showWarning('right');
-      if (this.curr === this.questions.length - 1) {
-        this.end=true;
-      }
-    } else {
-      this.showChoice = false;
-      this.showWarning('wrong', answers);
+  startTimer(){
+    this.timerInterval = setInterval(() => { this.timerScore() }, 1000);
+  }
+  stopTimer(){
+    clearInterval(this.timerInterval);
+  }
+
+  timerScore(){
+    this.timerCount--;
+    if(this.timerCount<0){
+      this.checkAnswer(false, 0);
     }
   }
 
-  showWarning(warnType: warnType, answers?: Answer[]) {
+  checkAnswer(correct: boolean, timer: number, answers?: Answer[]) {
+    this.showChoice = false;
+    this.showTimer = false;
+    
+    if (correct) {
+      this.showWarning('right', timer);
+    } else {
+      if(answers){
+        this.showWarning('wrong', timer, answers);
+      } else{
+        this.showWarning('missed', timer);
+      }
+    }
+    
+    if (this.curr === this.questions.length - 1) {
+      this.end=true;
+    }
+    this.stopTimer();
+  }
+
+  showWarning(warnType: warnType, timer: number, answers?: Answer[]) {
     switch (warnType) {
       case 'right': {
         this.warning = 'Wah, Jawaban kamu benar !!';
-        this.score++;
+        if(timer > 13 ){
+          this.score += 7;
+        }else if (timer > 10){
+          this.score += 5;
+        }else if(timer > 7){
+          this.score += 4;
+        }else if(timer > 4){
+          this.score += 3;
+        }else if(timer > 2){
+          this.score += 2;
+        }else{
+          this.score += 1;
+        }
         break;
       }
       case 'wrong': {
         answers.map(answer => {
           if (answer.correct) {
-            this.warning =
-              'Jawabanmu salah, yang benar adalah ' + answer.answer;
+            this.warning = 'Jawabanmu salah, yang benar adalah ' + answer.answer;
           }
         });
         break;
+      }
+      case 'missed': {
+        this.warning = 'Waktumu habis! Yuk lanjut ke pertanyaan selanjutnya';
       }
       default:
         break;
@@ -74,12 +114,15 @@ export class TebakGambarPage implements OnInit {
   }
 
   nextQuestion() {
+    this.timerCount = 15;
     if(this.end){
       this.inputNewHighScore(this.score);
     } else{
       this.curr++;
       this.showChoice = true;
       this.warning = undefined;
+      this.startTimer();
+      this.showTimer = true;
     }
   }
 
