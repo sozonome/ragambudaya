@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { Quiz } from './tebak-gambar/quiz.model';
 import { TebakGambarService } from './tebak-gambar/tebak-gambar.service';
-import { WayangService } from './infografik-wayang/wayang.service';
-import { Router } from '@angular/router';
-import { LoadingController, AlertController } from '@ionic/angular';
-import { PotretBudayaPage } from './potret-budaya/potret-budaya.page';
+import { InfografikService } from './infografik-wayang/infografik.service';
 import { PotretBudayaService } from './potret-budaya/potret-budaya.service';
 
 @Component({
@@ -17,14 +14,14 @@ export class HomePage {
 
   constructor(
     private tebakGambarServices: TebakGambarService,
-    private wayangSvc: WayangService,
+    private infografikService: InfografikService,
     private potretBudayaSvc: PotretBudayaService
   ) {}
 
   ionViewWillEnter(){
     this.tebakGambarServices.fetchQuiz().subscribe();
     this.tebakGambarServices.fetchScores().subscribe();
-    this.wayangSvc.fetchWayang().subscribe();
+    this.infografikService.fetchWayang().subscribe();
     this.potretBudayaSvc.fetchFrame().subscribe();
   }
 

@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Infografik</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row *ngIf="allInfografik">
+      <ion-col size="6" *ngFor="let infografik of allInfografik">
+        <ion-card color="primary" (click)="infografikDetail(infografik.id)">
+          <ion-card-content class="ion-text-center">
+              <ion-img [src]="infografik.thumbnail"></ion-img>
+              <p>{{infografik.title}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

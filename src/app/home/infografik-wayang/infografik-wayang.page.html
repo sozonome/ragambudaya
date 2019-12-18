@@ -9,29 +9,17 @@
 
 <ion-content>
   <ion-grid fixed>
-    <ion-row *ngIf="allWayang">
-      <ion-col size="6" *ngFor="let wayang of allWayang">
-        <ion-card (click)="wayangDetail(wayang.id)">
-          <ion-card-content>
-              <ion-img [src]="wayang.thumbnail"></ion-img>
-              <p>{{wayang.title}}</p>
-          </ion-card-content>
-        </ion-card>
+    <ion-row>
+      <ion-col class="ion-text-center" size="12">
+        <h2>Kategori</h2>
       </ion-col>
-      <!-- <ion-col size="12">
-        <div class="imgContainer">
-          <img class="wayang" src="../../../assets/img/home/infografik.svg"   alt="">
-        </div>
-      </ion-col> -->
     </ion-row>
-    <!-- <ion-row>
-      <ion-col size="12">
-        <div class="infoWayang">
-          <p>
-            Proin a risus dui. Aenean malesuada molestie interdum. Ut lobortis est at diam eleifend, non facilisis enim aliquet. Morbi posuere placerat nunc, eu laoreet turpis accumsan non. Etiam at pretium arcu. Praesent eget nunc bibendum, convallis lacus id, pretium eros. Nam malesuada efficitur risus, et porttitor urna pellentesque sed. In lacinia urna ipsum. Nam enim libero, efficitur sed dignissim ac, tempus sit amet turpis. In porta, turpis ac facilisis euismod, augue mauris porta elit, in sodales sem ipsum sed justo. Vivamus faucibus hendrerit sapien id fringilla. In vitae varius lectus, et venenatis est. Ut eu nisl sed libero imperdiet sollicitudin. Phasellus imperdiet ut tellus vel consectetur. Suspendisse lorem mi, fringilla a tortor facilisis, dignissim ultricies nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </p>
-        </div>
+    <ion-row>
+      <ion-col *ngFor="let k of infografikType" size="12">
+        <ion-button shape="round" size="large" expand="block" (click)="selectKategori(k)">
+          {{k}}
+        </ion-button>
       </ion-col>
-    </ion-row> -->
+    </ion-row>
   </ion-grid>
 </ion-content>

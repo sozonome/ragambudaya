@@ -20,7 +20,11 @@ const routes: Routes = [
           './home/infografik-wayang/infografik-wayang.module#InfografikWayangPageModule'
       },
       {
-        path: 'detail-wayang/:wayangId',
+        path: 'pilihan/:infografikType',
+        loadChildren: './home/infografik-wayang/pilihan/pilihan.module#PilihanPageModule'
+      },
+      {
+        path: 'detail-wayang/:infografikId',
         loadChildren:
           './home/infografik-wayang/detail-wayang/detail-wayang.module#DetailWayangPageModule'
       }

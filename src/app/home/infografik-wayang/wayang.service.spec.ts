@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { WayangService } from './wayang.service';
+import { InfografikService } from './infografik.service';
 
-describe('WayangService', () => {
+describe('InfografikService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: WayangService = TestBed.get(WayangService);
+    const service: InfografikService = TestBed.get(InfografikService);
     expect(service).toBeTruthy();
   });
 });

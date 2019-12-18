@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Wayang } from '../wayang.model';
-import { WayangService } from '../wayang.service';
+import { Infografik } from '../infografik.model';
+import { InfografikService } from '../infografik.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,21 +9,20 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./detail-wayang.page.scss'],
 })
 export class DetailWayangPage implements OnInit {
-  wayang: Wayang;
+  infografik: Infografik;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private wayangServices: WayangService
+    private infografikService: InfografikService
   ) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
-      if(!paramMap.has('wayangId')){
-        console.log('gk ada')
+      if(!paramMap.has('infografikId')){
+        console.log('gk ada');
         return;
       }
-      this.wayang = this.wayangServices.getWayang(paramMap.get('wayangId'));
+      this.infografik = this.infografikService.getInfografik(paramMap.get('infografikId'));
     });
   }
-
 }
