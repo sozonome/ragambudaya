@@ -148,6 +148,7 @@ export class TebakGambarService {
         take(1),
         tap(scoresArray => {
           this.scores.next(scoresArray.concat(newScore));
+          this.highScore();
         })
       )
   }

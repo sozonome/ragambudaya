@@ -164,7 +164,6 @@ export class TebakGambarPage implements OnInit {
           text: 'OK',
           handler: data => {
             this.tebakGambarServices.addNewScore(data.playerName, score).subscribe();
-            this.tebakGambarServices.highScore();
           }
         }
       ]
