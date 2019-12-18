@@ -19,7 +19,6 @@ export class DetailWayangPage implements OnInit {
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       if(!paramMap.has('infografikId')){
-        console.log('gk ada');
         return;
       }
       this.infografik = this.infografikService.getInfografik(paramMap.get('infografikId'));

@@ -43,12 +43,6 @@ export class TebakGambarPage implements OnInit {
       this.router.navigate(['/', 'home']);
       this.tebakGambarServices.tebakGambar();
     }
-    // console.log(
-    //   this.questions,
-    //   this.end,
-    //   this.score,
-    //   this.curr
-    // );
   }
 
   shuffle(array) {

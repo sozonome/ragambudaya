@@ -27,10 +27,6 @@ export class AfterQuizPage implements OnInit {
     this.scores = sortedScores.slice(0, 10);
   }
 
-  checkFetch(){
-    console.log(this.scores);
-  }
-
   playAgain(){
     //To reset quiz from beginning
     this.router.navigate(['/', 'tebak-gambar']);

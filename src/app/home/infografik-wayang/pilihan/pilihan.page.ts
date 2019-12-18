@@ -23,7 +23,6 @@ export class PilihanPage implements OnInit {
   ionViewWillEnter() {
     this.activatedRoute.paramMap.subscribe((paramMap)=>{
       if(!paramMap.has('infografikType')){
-        console.log('none');
         return;
       }
       this.allInfografik = this.infografikService.getAllInfografikByType(paramMap.get('infografikType'));
