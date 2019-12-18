@@ -24,8 +24,12 @@ export class PotretBudayaPage implements OnInit {
   picTaken: boolean;
   showFrame: boolean = false;
   random: string;
- 
-  framePaths = [];
+  framePaths = [
+    'assets/img/batik-frame.svg', 
+    'assets/img/frame-2.svg',
+    'assets/img/LAUT.png',
+    'assets/img/mahkota siger.svg'
+  ];
   pointer: number = 0;
 
   constructor(
@@ -41,9 +45,9 @@ export class PotretBudayaPage implements OnInit {
 
   ionViewWillEnter(){
     this.runCamera();
-    this.potretBudayaSvc.getAllFrame().subscribe((frames) => {
-      this.framePaths = frames;
-    });
+    // this.potretBudayaSvc.getAllFrame().subscribe((frames) => {
+    //   this.framePaths = frames;
+    // });
   }
 
   runCamera() {
@@ -99,8 +103,8 @@ export class PotretBudayaPage implements OnInit {
   }
   
   addFrame(){
-    
-    watermark([this.blobImage, 'assets/img/batik-frame.svg'])
+
+    watermark([this.blobImage, this.framePaths[this.pointer]])
     .image(watermark.image.center(1))
     .then(img => {
       this.sharePic = img.src;
