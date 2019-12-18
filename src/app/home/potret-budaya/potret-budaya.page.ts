@@ -26,6 +26,12 @@ export class PotretBudayaPage implements OnInit {
   ) { }
 
   ngOnInit() {
+
+  }
+
+  ionViewWillEnter(){
+    this.runCamera();
+    
   }
 
   runCamera() {
@@ -92,7 +98,7 @@ export class PotretBudayaPage implements OnInit {
     this.socialSharing.share(null, null, this.sharePic, null);
   }
 
-  switch(){
+  switchCam(){
     this.cameraPreview.switchCamera();
   }
 

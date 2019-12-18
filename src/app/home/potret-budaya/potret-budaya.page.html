@@ -8,10 +8,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="runCamera()" [disabled]="cameraOpened" expand="full">Open Camera</ion-button>
-  <ion-button (click)="takePicture()" [disabled]="!cameraOpened" expand="full">Take Picture</ion-button>
-  <ion-button (click)="sharePicture()" [disabled]="!picTaken" expand="full">Share</ion-button>
-  <ion-button (click)="switchCam()" [disabled]="!cameraOpened" expand="full">Switc Camera</ion-button>
+  <ion-button *ngIf="picTaken" (click)="runCamera()" expand="full">Take Picture Again</ion-button>
+  <ion-button *ngIf="cameraOpened" (click)="takePicture()" expand="full">Take Picture</ion-button>
+  <ion-button *ngIf="picTaken" (click)="sharePicture()" expand="full">Share</ion-button>
+  <ion-button *ngIf="cameraOpened" (click)="switchCam()" expand="full">Switc Camera</ion-button>
   <div *ngIf="showFrame">
     <div id="frame">
       <img src="assets/img/batik-frame.svg">
