@@ -16,7 +16,9 @@ export class PotretBudayaPage implements OnInit {
   reset: boolean;
   blobImage: any = null;
   sharePic: any;
-  berhasil: string;
+  cameraOpened: boolean = false;
+  picTaken: boolean;
+  showFrame: boolean = false;
   
   constructor(
     private cameraPreview: CameraPreview,
@@ -27,9 +29,11 @@ export class PotretBudayaPage implements OnInit {
   }
 
   runCamera() {
+    this.cameraOpened = true;
+    this.picTaken = false;
     const cameraPreviewOpts: CameraPreviewOptions = {
       x: window.screen.width * 0.1,
-      y: window.screen.height * 0.2,
+      y: window.screen.height * 0.3,
       width: window.screen.width * 0.8,
       height: window.screen.height * 0.6,
       camera: 'rear',
@@ -38,10 +42,11 @@ export class PotretBudayaPage implements OnInit {
       toBack: true,
       alpha: 1
     }
-
+    
     this.cameraPreview.startCamera(cameraPreviewOpts).then(
       (res) => {
         this.reset = false;
+        this.showFrame = true; 
         console.log(res)
       },
       (err) => {
@@ -59,7 +64,9 @@ export class PotretBudayaPage implements OnInit {
     }
 
     this.cameraPreview.takeSnapshot(pictureOpts).then((imageData) => {
-      this.reset = true
+      this.reset = true;
+      this.cameraOpened = false;
+      this.picTaken = true;
       this.photo = 'data:image/jpeg;base64,' + imageData;
       
       fetch(this.photo)
@@ -67,22 +74,26 @@ export class PotretBudayaPage implements OnInit {
       .then(blob => {
         this.blobImage = blob;
         this.addFrame();
+        this.showFrame = false;
       });
       this.cameraPreview.stopCamera();
     });
   }
   
   addFrame(){
-    watermark([this.blobImage, 'assets/img/LAUT.png'])
+    watermark([this.blobImage, 'assets/img/batik-frame.svg'])
     .image(watermark.image.center(1))
     .then(img => {
       this.sharePic = img.src;
     })
-    this.berhasil = "BAELFSKCJSBDKFCNBSALOEJFBLSIEUFDBDOS"
   }
 
   sharePicture(){
     this.socialSharing.share(null, null, this.sharePic, null);
+  }
+
+  switch(){
+    this.cameraPreview.switchCamera();
   }
 
   ionViewWillLeave(){

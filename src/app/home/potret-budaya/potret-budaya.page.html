@@ -8,15 +8,21 @@
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="runCamera()" expand="full">Open Camera</ion-button>
-  <ion-button (click)="takePicture()" expand="full">Take Picture</ion-button>
-  <ion-button (click)="addFrame()" expand="full">Add Frame</ion-button>
-  <ion-button (click)="sharePicture()" expand="full">Share</ion-button>
-  <div *ngIf="reset">
-    <ion-img *ngIf="!sharePic" [src]="photo"></ion-img>
+  <ion-button (click)="runCamera()" [disabled]="cameraOpened" expand="full">Open Camera</ion-button>
+  <ion-button (click)="takePicture()" [disabled]="!cameraOpened" expand="full">Take Picture</ion-button>
+  <ion-button (click)="sharePicture()" [disabled]="!picTaken" expand="full">Share</ion-button>
+  <ion-button (click)="switchCam()" [disabled]="!cameraOpened" expand="full">Switc Camera</ion-button>
+  <div *ngIf="showFrame">
+    <div id="frame">
+      <img src="assets/img/batik-frame.svg">
+    </div>
   </div>
-  <div>
-    <ion-img *ngIf="sharePic" [src]="sharePic"></ion-img>
+  <div *ngIf="picTaken">
+    <div *ngIf="!sharePic">
+      <ion-img [src]="photo"></ion-img>
+    </div>
+    <div *ngIf="sharePic">
+      <ion-img [src]="sharePic"></ion-img>
+    </div>
   </div>
-  <p *ngIf="berhasil">{{berhasil}}</p>
 </ion-content>
