@@ -4,11 +4,12 @@ ion-title{
 }
 
 p{
-  border: 1px solid black;
+  font-family: 'Patua One', cursive;
+  border: 1px solid var(--ion-color-primary);
   border-radius: 15px;
   margin: 5px;
   padding: 15px;
-  color: black;
+  color: var(--ion-color-primary);
   text-align: justify;
   text-justify: inter-word;
 }
