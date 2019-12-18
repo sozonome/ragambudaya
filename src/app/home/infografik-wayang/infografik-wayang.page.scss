@@ -9,7 +9,11 @@
   padding: 1em;
 }
 
-ion-content, ion-button{
+ion-content, ion-card{
   font-family: 'Cinzel Decorative', cursive;
   font-weight: bold;
+}
+
+ion-card p{
+  font-size: 18pt;
 }
