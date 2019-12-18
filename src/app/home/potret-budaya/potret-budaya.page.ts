@@ -2,6 +2,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import * as watermark from 'watermarkjs';
+import { HttpClient } from '@angular/common/http';
+import { map, tap } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { PotretBudayaService } from './potret-budaya.service';
 
 @Component({
   selector: 'app-potret-budaya',
@@ -19,10 +23,16 @@ export class PotretBudayaPage implements OnInit {
   cameraOpened: boolean = false;
   picTaken: boolean;
   showFrame: boolean = false;
-  
+  random: string;
+ 
+  framePaths = [];
+  pointer: number = 0;
+
   constructor(
     private cameraPreview: CameraPreview,
-    private socialSharing: SocialSharing
+    private socialSharing: SocialSharing,
+    private http: HttpClient,
+    private potretBudayaSvc: PotretBudayaService
   ) { }
 
   ngOnInit() {
@@ -31,7 +41,9 @@ export class PotretBudayaPage implements OnInit {
 
   ionViewWillEnter(){
     this.runCamera();
-    
+    this.potretBudayaSvc.getAllFrame().subscribe((frames) => {
+      this.framePaths = frames;
+    });
   }
 
   runCamera() {
@@ -87,6 +99,7 @@ export class PotretBudayaPage implements OnInit {
   }
   
   addFrame(){
+    
     watermark([this.blobImage, 'assets/img/batik-frame.svg'])
     .image(watermark.image.center(1))
     .then(img => {
@@ -101,6 +114,30 @@ export class PotretBudayaPage implements OnInit {
   switchCam(){
     this.cameraPreview.switchCamera();
   }
+
+  changeFrameLeft(){
+    if(this.pointer >= 0){
+      this.pointer--;
+    }
+  }
+
+  changeFrameRight(){
+    if(this.pointer < this.framePaths.length){
+      this.pointer++;
+    }
+  }
+
+  makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+
+  
 
   ionViewWillLeave(){
     this.cameraPreview.stopCamera();

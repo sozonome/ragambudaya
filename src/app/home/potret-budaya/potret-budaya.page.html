@@ -12,9 +12,12 @@
   <ion-button *ngIf="cameraOpened" (click)="takePicture()" expand="full">Take Picture</ion-button>
   <ion-button *ngIf="picTaken" (click)="sharePicture()" expand="full">Share</ion-button>
   <ion-button *ngIf="cameraOpened" (click)="switchCam()" expand="full">Switc Camera</ion-button>
+  <ion-button *ngIf="cameraOpened" (click)="changeFrameLeft()" expand="full">&#8592; Frame</ion-button>
+  <ion-button *ngIf="cameraOpened" (click)="changeFrameRight()" expand="full">Frame &#8594;</ion-button>
   <div *ngIf="showFrame">
     <div id="frame">
-      <img src="assets/img/batik-frame.svg">
+      <p>{{random}}</p>
+      <img src={{framePaths[pointer].image}}>
     </div>
   </div>
   <div *ngIf="picTaken">
