@@ -2,3 +2,14 @@ ion-title, p{
   font-family: 'Cinzel Decorative', cursive;
   font-weight: bold;
 }
+
+ion-card{
+  ion-card-content{
+    img{
+      height: 30vw;
+    }
+    p{
+      padding: 20px 0;
+    }
+  }
+}

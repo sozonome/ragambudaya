@@ -15,10 +15,16 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col *ngFor="let k of infografikType" size="12">
-        <ion-button shape="round" size="large" expand="block" (click)="selectKategori(k)">
+      <ion-col *ngFor="let k of infografikType" size="12" (click)="selectKategori(k.type)">
+        <ion-card color="primary" class="ion-text-center">
+          <ion-card-content>
+            <ion-img [src]="k.thumbnail"></ion-img>
+            <p>{{k.type}}</p>
+          </ion-card-content>
+        </ion-card>
+        <!-- <ion-button shape="round" size="large" expand="block" (click)="selectKategori(k)">
           {{k}}
-        </ion-button>
+        </ion-button> -->
       </ion-col>
     </ion-row>
   </ion-grid>
