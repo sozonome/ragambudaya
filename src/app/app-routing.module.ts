@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'splashscreen', pathMatch: 'full' },
+  { path: '', redirectTo: 'onboarding', pathMatch: 'full' },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
@@ -10,11 +10,6 @@ const routes: Routes = [
   {
     path: 'onboarding',
     loadChildren: './intro/onboarding/onboarding.module#OnboardingPageModule'
-  },
-  {
-    path: 'splashscreen',
-    loadChildren:
-      './intro/splashscreen/splashscreen.module#SplashscreenPageModule'
   },
   {
     path: 'infografik-wayang',
