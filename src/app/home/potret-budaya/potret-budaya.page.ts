@@ -27,10 +27,10 @@ export class PotretBudayaPage implements OnInit {
   showFrame: boolean = false;
   random: string;
   framePaths = [
-    'assets/img/', 
-    'assets/img/frame-2.svg',
-    'assets/img/LAUT.png',
-    'assets/img/mahkota siger.svg'
+    'assets/img/frame/FR1-1080.png', 
+    'assets/img/frame/FR2-1080.png',
+    'assets/img/frame/FR3-1080.png',
+    'assets/img/frame/FR4-1080.png'
   ];
   pointer: number = 0;
 
@@ -99,7 +99,7 @@ export class PotretBudayaPage implements OnInit {
   }
   addFrame(){
 
-    watermark([this.blobImage, 'assets/img/frametest.png'])
+    watermark([this.blobImage, this.framePaths[this.pointer]])
     .image(watermark.image.center(1))
     .then(img => {
       this.sharePic = img.src;

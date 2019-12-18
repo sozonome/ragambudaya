@@ -8,27 +8,54 @@
 </ion-header>
 
 <ion-content>
-  <ion-button *ngIf="picTaken" (click)="runCamera()" expand="full">Take Picture Again</ion-button>
-  <ion-button *ngIf="cameraOpened" (click)="takePicture()" expand="full">Take Picture</ion-button>
-  <ion-button *ngIf="picTaken" (click)="sharePicture()" expand="full">Share</ion-button>
-  <ion-button *ngIf="cameraOpened" (click)="switchCam()" expand="full">Switc Camera</ion-button>
-  <ion-button *ngIf="cameraOpened" (click)="changeFrameLeft()" expand="full">&#8592; Frame</ion-button>
-  <ion-button *ngIf="cameraOpened" (click)="changeFrameRight()" expand="full">Frame &#8594;</ion-button>
+  <!-- Take Picture -->
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button color="light" id="takePicture" *ngIf="cameraOpened" (click)="takePicture()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Switch Camera -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="light" *ngIf="cameraOpened" (click)="switchCam()">
+      <ion-icon name="reverse-camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab vertical="center" horizontal="start" slot="fixed">
+    <ion-fab-button *ngIf="cameraOpened" (click)="changeFrameLeft()">
+      <ion-icon name="arrow-dropleft"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab vertical="center" horizontal="end" slot="fixed">
+    <ion-fab-button *ngIf="cameraOpened" (click)="changeFrameRight()">
+      <ion-icon name="arrow-dropright"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Share Button -->
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button *ngIf="picTaken" (click)="sharePicture()">
+      <ion-icon name="share"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Retake Button -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button *ngIf="picTaken" (click)="runCamera()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <div *ngIf="showFrame">
-    <p>Width : {{screenWidth}}, Height: {{screenHeight}}</p>
     <div id="frame">
       <p>{{random}}</p>
       <img src={{framePaths[pointer]}}>
     </div>
   </div>
   <div *ngIf="picTaken">
-    <!-- <div *ngIf="!sharePic">
-      <ion-img [src]="photo"></ion-img>
-    </div>
     <div *ngIf="sharePic">
       <ion-img [src]="sharePic" style="width: 50%; height: 50%;"></ion-img>
-    </div> -->
-    <ion-img [src]="photo" style="width: 50%; height: 50%;"></ion-img>
-    <ion-img [src]="sharePic" style="width: 50%; height: 50%;"></ion-img>
+    </div>
   </div>
 </ion-content>
