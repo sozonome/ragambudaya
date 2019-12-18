@@ -15,17 +15,20 @@
   <ion-button *ngIf="cameraOpened" (click)="changeFrameLeft()" expand="full">&#8592; Frame</ion-button>
   <ion-button *ngIf="cameraOpened" (click)="changeFrameRight()" expand="full">Frame &#8594;</ion-button>
   <div *ngIf="showFrame">
+    <p>Width : {{screenWidth}}, Height: {{screenHeight}}</p>
     <div id="frame">
       <p>{{random}}</p>
       <img src={{framePaths[pointer]}}>
     </div>
   </div>
   <div *ngIf="picTaken">
-    <div *ngIf="!sharePic">
+    <!-- <div *ngIf="!sharePic">
       <ion-img [src]="photo"></ion-img>
     </div>
     <div *ngIf="sharePic">
-      <ion-img [src]="sharePic"></ion-img>
-    </div>
+      <ion-img [src]="sharePic" style="width: 50%; height: 50%;"></ion-img>
+    </div> -->
+    <ion-img [src]="photo" style="width: 50%; height: 50%;"></ion-img>
+    <ion-img [src]="sharePic" style="width: 50%; height: 50%;"></ion-img>
   </div>
 </ion-content>
