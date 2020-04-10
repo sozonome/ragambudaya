@@ -6,9 +6,6 @@
 
 <img src="https://firebasestorage.googleapis.com/v0/b/hatchoko-ragam-budaya.appspot.com/o/POSTER.png?alt=media&token=7ba1f76f-495d-4283-8067-b02907884087">
 
-[<b>Live Here</b>]('https://uas.mantapdjiwa.com')
-(Web Version) - to access native features (camera - 'Potret Budaya' feature), build the project to Android/iOS version first
-
 -----
 
 ### Dependencies / Library Used
