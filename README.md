@@ -28,9 +28,6 @@ Get the app from the [releases page](https://github.com/sozonome/ragambudaya/rel
 	6. Done, the APK is ready to use.<br><br>
 	7. [The APK can't be installed?](https://stackoverflow.com/questions/34265897/cannot-install-signed-apk-to-device-manually-got-error-app-not-installed)<br><br>
 
-#### Questions or Discussions
-If you are someone out there trying to learn using this project, feel free to give some feedbacks / discussions with us through 'New Issue' button.
-
 #### References
 - [Build Release Signed APK to Android using Cordova](https://stackoverflow.com/questions/26449512/how-to-create-a-signed-apk-file-using-cordova-command-line-interface)
 - [<code>zipalign</code> not found? (in command)](https://stackoverflow.com/questions/31048208/zipalign-command-not-found)
