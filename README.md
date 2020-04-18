@@ -4,6 +4,8 @@
 - Kevin Kelly Isyanta
 <br><b>2019</b>
 
+[![GitHub All Releases](https://img.shields.io/github/downloads/sozonome/ragambudaya/total?style=for-the-badge)](https://github.com/sozonome/ragambudaya)
+
 <img src="https://firebasestorage.googleapis.com/v0/b/hatchoko-ragam-budaya.appspot.com/o/POSTER.png?alt=media&token=7ba1f76f-495d-4283-8067-b02907884087">
 
 -----
