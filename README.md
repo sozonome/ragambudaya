@@ -7,6 +7,8 @@
 <img src="https://firebasestorage.googleapis.com/v0/b/hatchoko-ragam-budaya.appspot.com/o/POSTER.png?alt=media&token=7ba1f76f-495d-4283-8067-b02907884087">
 
 -----
+### Download
+Get the app from the [releases page](https://github.com/sozonome/ragambudaya/releases).
 
 ### Dependencies / Library Used
 - cordova plugins
