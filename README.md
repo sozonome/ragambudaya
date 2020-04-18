@@ -1,7 +1,7 @@
-# Hatchoko Ionic App - Ragam Budaya 
-- Hanasya Shabrina  00000014425
-- Agustinus Nathaniel 00000014472
-- Kevin Kelly Isyanta 00000014910
+# Ragam Budaya - Ionic App by Hatchoko Group 
+- Hanasya Shabrina
+- Agustinus Nathaniel
+- Kevin Kelly Isyanta
 <br><b>2019</b>
 
 <img src="https://firebasestorage.googleapis.com/v0/b/hatchoko-ragam-budaya.appspot.com/o/POSTER.png?alt=media&token=7ba1f76f-495d-4283-8067-b02907884087">
